@@ -12,18 +12,17 @@ import com.example.yc.recyclerviewdemo.inface.OnItemClickListener
 /**
  * 普通适配器
  */
-class SimpleAdapter(var context: Context, var _datas: List<String>) : RecyclerView.Adapter<SimpleAdapter.MViewHolder>() {
+class SimpleAdapter(var context: Context, var _datas: List<String>, var resId: Int) : RecyclerView.Adapter<SimpleAdapter.MViewHolder>() {
 
     var itemClickListener: OnItemClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MViewHolder {
         val view = LayoutInflater.from(context)
-                .inflate(com.example.yc.recyclerviewdemo.R.layout.item_image_text, parent, false)
+                .inflate(resId, parent, false)
 
         val holder = MViewHolder(view)
-        if(itemClickListener != null)
-        {
-            view.setOnClickListener{
-                itemClickListener!!.onItemClick(view,holder.adapterPosition)
+        if (itemClickListener != null) {
+            view.setOnClickListener {
+                itemClickListener!!.onItemClick(view, holder.adapterPosition)
             }
         }
 

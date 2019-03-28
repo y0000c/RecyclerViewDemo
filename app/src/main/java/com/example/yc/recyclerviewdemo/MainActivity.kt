@@ -1,21 +1,19 @@
 package com.example.yc.recyclerviewdemo
 
-import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Canvas
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.View
 import com.example.yc.recyclerviewdemo.adapter.SimpleAdapter
 import com.example.yc.recyclerviewdemo.inface.OnItemClickListener
 import kotlinx.android.synthetic.main.activity_empty_recyclerview.*
-import java.util.*
 
+
+/**
+ * 显示所有的Activity
+ */
 class MainActivity : AppCompatActivity() {
 
     var _datas = arrayListOf<String>()
@@ -49,7 +47,7 @@ class MainActivity : AppCompatActivity() {
      * 初始化适配器
      */
     private fun initAdapter() {
-        _adapter = SimpleAdapter(this, _datas)
+        _adapter = SimpleAdapter(this, _datas, R.layout.item_linear_vertical)
         _adapter!!.itemClickListener = object : OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
                 val intent = Intent()

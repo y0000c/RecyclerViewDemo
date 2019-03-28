@@ -2,8 +2,10 @@ package com.example.yc.recyclerviewdemo.touchhelper
 
 import android.graphics.Canvas
 import android.graphics.Color
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.support.v7.widget.helper.ItemTouchHelper
 import java.util.*
 
@@ -14,28 +16,37 @@ class SimpleTouchCallBack(var _datas: ArrayList<String>,
                           var _adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>)
     : ItemTouchHelper.Callback() {
 
+    var isNeedToSwipe = false      // 是否允许左右滑动
+    var isLeftRightSwipe = false    // 是否是左右滑动
+    var isLongPressDragEnable = true // 是否运行长按触发拖动
+    var initBackRes = 0             // 样式初始值
     override fun getMovementFlags(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?): Int {
         var drag = 0
         var swipe = 0
-        var layout = recyclerView?.layoutManager
-        if (layout is LinearLayoutManager) //
+        val layout = recyclerView?.layoutManager
+
+        // 需要注意：GridLayoutManager是继承LinearManager，不能先判断linear再判断grid
+        if(layout is GridLayoutManager || layout is StaggeredGridLayoutManager)
         {
-            if(layout.orientation == LinearLayoutManager.HORIZONTAL)
-            {
+            isNeedToSwipe = false
+            // 网格和瀑布流不支持滑动
+            drag = ItemTouchHelper.DOWN.or(ItemTouchHelper.UP)
+                    .or(ItemTouchHelper.LEFT).or(ItemTouchHelper.RIGHT)
+        } else if (layout is  LinearLayoutManager) // 线性布局
+        {
+            isNeedToSwipe = true
+            if (layout.orientation == LinearLayoutManager.HORIZONTAL) {
                 // 水平 左右拖动，上下滑动删除
+                isLeftRightSwipe = false
                 drag = ItemTouchHelper.LEFT.or(ItemTouchHelper.RIGHT)
                 swipe = ItemTouchHelper.DOWN.or(ItemTouchHelper.UP)
-            }else
-            {
+            } else {
                 // 垂直的 左右滑动删除。上下拖动
+                isLeftRightSwipe = true
                 drag = ItemTouchHelper.DOWN.or(ItemTouchHelper.UP)
                 swipe = ItemTouchHelper.LEFT.or(ItemTouchHelper.RIGHT)
             }
 
-        } else {
-            // 网格和瀑布流不支持滑动
-            drag = ItemTouchHelper.DOWN.or(ItemTouchHelper.UP)
-                    .or(ItemTouchHelper.LEFT).or(ItemTouchHelper.RIGHT)
         }
         return makeMovementFlags(drag, swipe)
     }
@@ -97,7 +108,7 @@ class SimpleTouchCallBack(var _datas: ArrayList<String>,
     // 因此，这里才是最适合用于恢复view样式状态的函数。例如前面onSelectedChanged提到的问题
     override fun clearView(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?) {
         // Toast.makeText(this@MainActivity, "clearview", Toast.LENGTH_SHORT).show()
-        viewHolder?.itemView?.setBackgroundColor(0)
+        viewHolder?.itemView?.setBackgroundResource(initBackRes)
         super.clearView(recyclerView, viewHolder)
     }
 
@@ -105,19 +116,25 @@ class SimpleTouchCallBack(var _datas: ArrayList<String>,
     //从itemView开始触发滑动或者拖动事件时，就会不断的回调。直到手指离开，并且状态变成静止才停止
     // 这里可以获取位置的偏移，进行相对应的逻辑处理，例如颜色状态，大小状态等。
     // 比较常见的就是滑动删除时，alpha不断变化的效果
-    // 如果将这里看做动画插值器，那就很多事情可以做了
+    // 如果将这里看做动画插值器，那就很多事情可以做了(主要就是判断滑动距离与dx,dy的大小关系)
     override fun onChildDraw(c: Canvas?, recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
         // Log.d("--------onChildDraw", dX.toString().plus("---").plus(dY.toString()))
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-        val width = viewHolder!!.itemView.width
-        val alpha = 1 - Math.abs(dX.div(width))
-        viewHolder.itemView.alpha = alpha
+        if (isNeedToSwipe) { // 允许滑动
+            val alpha = 1 - if (isLeftRightSwipe) {
+                Math.abs(dX.div(viewHolder!!.itemView.width)) // 允许左右滑动
+            } else {
+                Math.abs(dY.div(viewHolder!!.itemView.height)) // 允许上下滑动
+            }
+            viewHolder.itemView.alpha = alpha
+        }
+
     }
 
     // 表示长按时，是否自动触发拖动事件，不影响侧滑事件
     // 默认返回true，即长按时触发拖动事件。如果recyclerView设置了长按事件，会出现冲突
     // 如果返回false，则无法触发拖动事件，可以通过startDrag开启拖动事件
     override fun isLongPressDragEnabled(): Boolean {
-        return true
+        return isLongPressDragEnable
     }
 }

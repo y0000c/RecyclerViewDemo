@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mine_channel"
+        android:text="我的频道"
+        android:textSize="16sp"
+        android:textColor="#000"/>
+    <TextView
+        android:layout_marginStart="5dp"
+        android:textSize="12sp"
+        android:text="拖动修改顺序"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@id/mine_channel"
+        app:layout_constraintLeft_toRightOf="@id/mine_channel" />
+
+    <Button
+        android:background="@drawable/item_uc"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/edit_btn"
+        android:text="编辑"
+        app:layout_constraintTop_toTopOf="@id/mine_channel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/mine_channel"
+       />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mine_recyclerView"
+        app:layout_constraintTop_toBottomOf="@id/mine_channel"/>
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/mine_recyclerView"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/recommend_channel"
+        android:text="频道推荐"
+        android:textSize="16sp"
+        android:textColor="#000"/>
+    <TextView
+        android:layout_marginStart="5dp"
+        android:textSize="12sp"
+        android:text="点击添加频道"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@id/recommend_channel"
+        app:layout_constraintLeft_toRightOf="@id/recommend_channel" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recommend_recyclerView"
+        app:layout_constraintTop_toBottomOf="@id/recommend_channel"/>
+</android.support.constraint.ConstraintLayout>
