@@ -20,6 +20,7 @@
         <activity android:name=".activity_touch.TouchGridVerticalActivity"/>
         <activity android:name=".activity_touch.TouchGridHorizonActivity"/>
         <activity android:name=".activity_touch.仿UC频道选择"/>
+        <activity android:name=".activity_mult_layout.NewsActivity"/>
     </application>
 
 </manifest>
