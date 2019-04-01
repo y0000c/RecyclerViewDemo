@@ -17,6 +17,12 @@ import com.example.yc.recyclerviewdemo.inface.OnItemLongPressListener
 import com.example.yc.recyclerviewdemo.touchhelper.SimpleTouchCallBack
 import kotlinx.android.synthetic.main.activity_uc.*
 
+/**
+ * 目前只是模拟了UC频道的案例样式与基本功能
+ * 某些动画效果没有实现，如全局拖动，删除和添加时，是直接移动，不是"凭空消失，凭空出现"
+ * （猜想：要实现上述效果，是利用单个adapter实现。删除或者添加时，是利用）
+ *
+ */
 class 仿UC频道选择 : AppCompatActivity() {
 
     var mSelectedList = arrayListOf<String>()
@@ -44,7 +50,7 @@ class 仿UC频道选择 : AppCompatActivity() {
         recommend_recyclerView.adapter = mUnSelectAdapter
 
         mineTouchCallback = SimpleTouchCallBack(mSelectedList,mSelectedAdapter
-                as RecyclerView.Adapter<RecyclerView.ViewHolder>)
+                as RecyclerView.Adapter<*>)
         mineTouchCallback!!.isLongPressDragEnable = false
         mineTouchCallback!!.initBackRes = R.drawable.item_uc
         mineTouchHelper = ItemTouchHelper(mineTouchCallback)
@@ -98,6 +104,7 @@ class 仿UC频道选择 : AppCompatActivity() {
                     mineTouchHelper!!.startDrag(viewHolder)
                     mSelectedAdapter!!.isShowDeleteIcon = true
                     mSelectedAdapter!!.notifyDataSetChanged()
+                    edit_btn.text = "完成"
                 }
             }
         }

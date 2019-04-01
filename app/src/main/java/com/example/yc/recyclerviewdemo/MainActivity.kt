@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.example.yc.recyclerviewdemo.adapter.SimpleAdapter
+import com.example.yc.recyclerviewdemo.adapter.CommonAdapter
 import com.example.yc.recyclerviewdemo.inface.OnItemClickListener
 import kotlinx.android.synthetic.main.activity_empty_recyclerview.*
 
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_empty_recyclerview.*
 class MainActivity : AppCompatActivity() {
 
     var _datas = arrayListOf<String>()
-    var _adapter: SimpleAdapter? = null
+    var _adapter: CommonAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_empty_recyclerview)
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
      * 初始化适配器
      */
     private fun initAdapter() {
-        _adapter = SimpleAdapter(this, _datas, R.layout.item_linear_vertical)
+        _adapter = CommonAdapter(this, _datas, R.layout.item_linear_vertical)
         _adapter!!.itemClickListener = object : OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
                 val intent = Intent()

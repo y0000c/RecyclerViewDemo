@@ -12,7 +12,7 @@ import com.example.yc.recyclerviewdemo.inface.OnItemClickListener
 /**
  * 普通适配器
  */
-class SimpleAdapter(var context: Context, var _datas: List<String>, var resId: Int) : RecyclerView.Adapter<SimpleAdapter.MViewHolder>() {
+class CommonAdapter(var context: Context, var _datas: List<String>, var resId: Int) : RecyclerView.Adapter<CommonAdapter.MViewHolder>() {
 
     var itemClickListener: OnItemClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MViewHolder {

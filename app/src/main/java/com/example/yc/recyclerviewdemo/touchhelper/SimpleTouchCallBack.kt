@@ -13,7 +13,7 @@ import java.util.*
  * 拖动回调事件
  */
 class SimpleTouchCallBack(var _datas: ArrayList<String>,
-                          var _adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>)
+                          var _adapter: RecyclerView.Adapter<*>)
     : ItemTouchHelper.Callback() {
 
     var isNeedToSwipe = false      // 是否允许左右滑动

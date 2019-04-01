@@ -5,6 +5,8 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/item_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
