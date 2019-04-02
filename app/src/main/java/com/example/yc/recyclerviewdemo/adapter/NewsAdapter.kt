@@ -72,7 +72,7 @@ class NewsAdapter(var context: Context, var _datas: List<News>)
         // 如何进一步简化代码-》将不同布局中的title,time对应的TextView都设置成同样的id
         // 这样就不需要对title,事件分类型判断了。只需要对图片分类型即可
         when {
-            holder!!.itemViewType == NONE -> {
+            holder.itemViewType == NONE -> {
                 holder.setText(R.id.item_news_none_title, _datas[position].name)
                 holder.setText(R.id.item_news_none_time, _datas[position].timeStr)
             }

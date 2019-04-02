@@ -19,7 +19,7 @@ class NewsActivity : AppCompatActivity() {
     var mDatas = arrayListOf<News>()
 
     // 适配器
-    var mAdapter: NewsAdapter? = null
+    var mAdapter: NewsAdapter? = null  // 后续添加了多布局基类适配器
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

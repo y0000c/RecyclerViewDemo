@@ -98,7 +98,7 @@ class 仿UC频道选择 : AppCompatActivity() {
          * 我的频道长按事件
          */
         mSelectedAdapter!!.longListener = object :OnItemLongPressListener{
-            override fun onItemLongPress(viewHolder: RecyclerView.ViewHolder, position: Int) {
+            override fun onItemLongPress(viewHolder: RecyclerView.ViewHolder) {
                 if(!mSelectedAdapter!!.isShowDeleteIcon){ // 未显示删除icon,长按打开
                     mineTouchCallback!!.isLongPressDragEnable = true //
                     mineTouchHelper!!.startDrag(viewHolder)
@@ -171,7 +171,7 @@ class 仿UC频道选择 : AppCompatActivity() {
             if(longListener != null)
             {
                 view.setOnLongClickListener{
-                    longListener!!.onItemLongPress(mineViewHodler, mineViewHodler.adapterPosition)
+                    longListener!!.onItemLongPress(mineViewHodler)
                     true
                 }
             }
