@@ -2,12 +2,14 @@ package com.example.yc.recyclerviewdemo
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.example.yc.recyclerviewdemo.adapter.CommonAdapter
 import com.example.yc.recyclerviewdemo.inface.OnItemClickListener
+import com.example.yc.recyclerviewdemo.itemline.LinearItemLine
 import kotlinx.android.synthetic.main.activity_empty_recyclerview.*
 
 
@@ -24,6 +26,11 @@ class MainActivity : AppCompatActivity() {
         initDatas()
         initAdapter()
         main_recyclerView.layoutManager = LinearLayoutManager(this) // 设置布局类型
+        main_recyclerView.addItemDecoration(
+                LinearItemLine.Builder(this)
+                        .setColor(Color.GREEN)
+                        .setWidth(10)
+                        .build())
         main_recyclerView.adapter = _adapter  // 设置适配器
 
     }
