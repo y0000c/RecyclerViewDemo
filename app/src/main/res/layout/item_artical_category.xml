@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
+    app:contentPadding="5dp">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textColor="#39e0f2"
+            android:id="@+id/item_artical_categoty_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="start"
+            android:gravity="start"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:text="aaaa"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_artical_categoty_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#aaa"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_artical_categoty_title" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/item_artical_categoty_recyclerview"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_artical_categoty_line" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

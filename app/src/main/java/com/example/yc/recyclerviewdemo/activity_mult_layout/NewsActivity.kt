@@ -10,6 +10,9 @@ import kotlinx.android.synthetic.main.activity_empty_recyclerview.*
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * 新闻列表多布局显示
+ */
 class NewsActivity : AppCompatActivity() {
 
     // 数据

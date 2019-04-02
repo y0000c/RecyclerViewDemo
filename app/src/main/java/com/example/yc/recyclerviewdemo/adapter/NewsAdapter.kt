@@ -31,7 +31,7 @@ class NewsAdapter(var context: Context, var _datas: List<News>)
     /**
      * 根据不同的类型，来加载不同的布局，实现多布局
      */
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int):
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             NewsViewHolder {
         var view: View? = null
         view = if (viewType == NONE) {
@@ -67,7 +67,7 @@ class NewsAdapter(var context: Context, var _datas: List<News>)
     /**
      * 根据不同的类型，绑定不同布局中子控件的值
      */
-    override fun onBindViewHolder(holder: NewsViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         // 这里省略了设置图片的逻辑
         // 如何进一步简化代码-》将不同布局中的title,time对应的TextView都设置成同样的id
         // 这样就不需要对title,事件分类型判断了。只需要对图片分类型即可

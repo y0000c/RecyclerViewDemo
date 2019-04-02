@@ -30,8 +30,8 @@ class PhoneAdapter(var context: Context, var _datas: List<Phone>)
     /**
      * 根据不同的类型，来加载不同的布局，实现多布局
      */
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int):
-            PhoneViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
+            PhoneAdapter.PhoneViewHolder {
         var view: View? = null
         view = if (viewType == TAG) {
             LayoutInflater.from(context)
@@ -58,8 +58,8 @@ class PhoneAdapter(var context: Context, var _datas: List<Phone>)
     /**
      * 根据不同的类型，绑定不同布局中子控件的值
      */
-    override fun onBindViewHolder(holder: PhoneViewHolder?, position: Int) {
-        if (holder!!.itemViewType == TAG)
+    override fun onBindViewHolder(holder: PhoneAdapter.PhoneViewHolder, position: Int) {
+        if (holder.itemViewType == TAG)
             holder.setText(R.id.item_phone_tag, _datas[position].name)
         else
             holder.setText(R.id.item_phone_comm_name, _datas[position].name)

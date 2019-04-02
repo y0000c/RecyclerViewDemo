@@ -153,14 +153,14 @@ class 仿UC频道选择 : AppCompatActivity() {
         var listener: OnItemClickListener? = null // 点击事件回调类
         var longListener :OnItemLongPressListener? = null // 长按回调事件
 
-        constructor(mDatas: ArrayList<String>?, mContext: Context?, isShowDeleteIcon: Boolean, isMineLayout: Boolean) {
+        constructor(mDatas: ArrayList<String>?, mContext: Context, isShowDeleteIcon: Boolean, isMineLayout: Boolean) {
             this.mContext = mContext
             this.mDatas = mDatas
             this.isMineLayout = isMineLayout
             this.isShowDeleteIcon = isShowDeleteIcon
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): UCViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UCAdapter.UCViewHolder {
             val view = LayoutInflater.from(mContext).inflate(R.layout.item_uc, parent, false)
             val mineViewHodler = UCViewHolder(view)
             if (listener != null) {
@@ -184,8 +184,8 @@ class 仿UC频道选择 : AppCompatActivity() {
             return mDatas!!.size
         }
 
-        override fun onBindViewHolder(holder: UCViewHolder?, position: Int) {
-            holder!!.title.text = mDatas!![position]
+        override fun onBindViewHolder(holder: UCAdapter.UCViewHolder, position: Int) {
+            holder.title.text = mDatas!![position]
             if (isMineLayout) // 我的频道
             {
                 holder.icon.setImageResource(android.R.drawable.ic_delete)

@@ -15,7 +15,7 @@ import com.example.yc.recyclerviewdemo.inface.OnItemClickListener
 class CommonAdapter(var context: Context, var _datas: List<String>, var resId: Int) : RecyclerView.Adapter<CommonAdapter.MViewHolder>() {
 
     var itemClickListener: OnItemClickListener? = null
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MViewHolder {
         val view = LayoutInflater.from(context)
                 .inflate(resId, parent, false)
 
@@ -33,8 +33,8 @@ class CommonAdapter(var context: Context, var _datas: List<String>, var resId: I
         return _datas.size
     }
 
-    override fun onBindViewHolder(holder: MViewHolder?, position: Int) {
-        holder?.nameTv?.text = _datas[position]
+    override fun onBindViewHolder(holder: MViewHolder, position: Int) {
+        holder.nameTv.text = _datas[position]
     }
 
     inner class MViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

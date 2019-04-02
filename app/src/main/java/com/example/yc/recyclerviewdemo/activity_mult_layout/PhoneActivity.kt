@@ -8,6 +8,9 @@ import com.example.yc.recyclerviewdemo.adapter.PhoneAdapter
 import com.example.yc.recyclerviewdemo.entity.Phone
 import kotlinx.android.synthetic.main.activity_empty_recyclerview.*
 
+/**
+ * 手机联系人多布局显示
+ */
 class PhoneActivity : AppCompatActivity() {
 
     // 数据
